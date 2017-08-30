@@ -11,7 +11,7 @@ export default class Profile extends Component{
         return (
             <div className="profile">
                 <div className="profile-top">
-                    <img src={profile} width={'80px'} alt=""/>
+                    <img className="profile-img" src={profile} width={'80px'} alt=""/>
                     <Link className="login-btn" to={'/login'}>登录</Link>
                 </div>
                 <div className="profile-content">

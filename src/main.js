@@ -9,6 +9,7 @@ import App from './containers/App';
 import Reg from "./containers/Reg/reg";
 import Home from "./containers/Home";
 import List from "./containers/list/List";
+import Detail from "./containers/detail/Detail";
 
 
 ReactDOM.render(

@@ -10,7 +10,10 @@ import Reg from "./containers/Reg/reg";
 import Home from "./containers/Home";
 import List from "./containers/list/List";
 import Detail from "./containers/detail/Detail";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 52ad288e6f7004c1a44f9520abfa8c1ffd14e602
 
 
 ReactDOM.render(

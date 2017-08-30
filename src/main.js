@@ -8,7 +8,7 @@ import Profile from "./containers/Profile/profile";
 import App from './containers/App';
 import Reg from "./containers/Reg/reg";
 import Home from "./containers/Home";
-import List from "./containers/List/list";
+import List from "./containers/list/List";
 
 
 ReactDOM.render(
@@ -20,6 +20,7 @@ ReactDOM.render(
                 <Route path={'/profile'} component={Profile}/>
                 <Route path={'/login'} component={Login}/>
                 <Route path={'/reg'} component={Reg}/>
+<Route path={"/detail"} component={Detail}/>
             </Switch>
         </App>
     </Router>,document.getElementById('app'));

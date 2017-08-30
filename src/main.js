@@ -7,7 +7,7 @@ import Login from './containers/Login/login';
 import Profile from "./containers/Profile/profile";
 import App from './containers/App';
 import Reg from "./containers/Reg/reg";
-import Home from "./containers/Home/home";
+import Home from "./containers/Home";
 import List from "./containers/List/list";
 
 

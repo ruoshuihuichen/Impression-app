@@ -8,7 +8,7 @@ import Header from "../../components/Mheader/Header";
 export default class Detail extends Component{
     render(){
         return (
-            <div>
+            <div className="detail">
                 <Header name="详情"/>
                 <img src="http://img.chufaba.me/poi_comment_75d474ae-b0df-42d6-a6dd-e6196ac9e66a.JPG" alt=""/>
                 <img src="http://img.chufaba.me/poi_comment_75d474ae-b0df-42d6-a6dd-e6196ac9e66a.JPG" alt=""/>

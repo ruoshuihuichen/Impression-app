@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import Mheader from "../../components/Mheader/index";
 import ScrollList from "../../components/ScrollList/index";
 import ReactSwipe from 'react-swipe';
 import NewList from "../../components/NewList/index";

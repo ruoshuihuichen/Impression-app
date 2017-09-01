@@ -5,14 +5,21 @@ import React,{Component} from 'react';
 import profile from '../../common/images/profile.png';
 import {Link} from 'react-router-dom';
 import './profile.less';
+import {connect} from 'react-redux';
+import * as action from '../../redux/actions/user';
 
-export default class Profile extends Component{
+ class Profile extends Component{
+     componetnDidMount(){
+         this.props.auth();
+     }
     render(){
         return (
             <div className="profile">
                 <div className="profile-top">
                     <img className="profile-img" src={profile} width={'80px'} alt=""/>
-                    <Link className="login-btn" to={'/login'}>登录</Link>
+                    {
+                        this.props.user.userInfo.username?<a className="login-btn">{this.props.user.userInfo.username}</a>:<Link className="login-btn" to={'/login'}>登录</Link>
+                    }
                 </div>
                 <div className="profile-content">
                     <div className="collect">
@@ -32,8 +39,7 @@ export default class Profile extends Component{
                     </div>
                 </div>
             </div>
-
-
         )
     }
 }
+export default connect(state=>({...state}),action)(Profile);

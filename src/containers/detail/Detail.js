@@ -3,13 +3,13 @@
  */
 import React,{Component} from 'react';
 import "./detail.less"
-import Header from "../../components/Mheader/Header";
+import Header from "../../components/Header/header";
 
 export default class Detail extends Component{
     render(){
         return (
             <div className="detail">
-                <Header name="详情"/>
+                <Header title="详情"/>
                 <img src="http://img.chufaba.me/poi_comment_75d474ae-b0df-42d6-a6dd-e6196ac9e66a.JPG" alt=""/>
                 <img src="http://img.chufaba.me/poi_comment_75d474ae-b0df-42d6-a6dd-e6196ac9e66a.JPG" alt=""/>
                 <p>

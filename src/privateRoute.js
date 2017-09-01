@@ -6,9 +6,13 @@ export default class PrivateRoute extends Component{
         let {component:Component,...rest}=this.props;
         return(
             <div>
-                <Route {...rest} render={(props)=>(
-                    util.get('user').username?<Component {...props} />:<Redirect to={'/login'}/>
-                )}/>
+                <Route {...rest} render={(props)=>{
+                    if(util.get('user').username){
+                        return <Component {...props} />
+                    }else{
+                        return <Redirect to={'/login'}/>
+                    }
+                }}/>
             </div>
         )
     }

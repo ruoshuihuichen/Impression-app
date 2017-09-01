@@ -33,7 +33,9 @@ class Login extends Component{
                                     this.setState({password:e.target.value})
                                 }} /></li>
                     <li><a className="login-btn" onClick={this.login} >登录</a></li>
-                    <li><Link className="link-reg"  to={'/reg'}>注册</Link></li>
+                    <li>
+                        <Link className="link-reg"  to={'/reg'}>注册</Link><span>没有账号？请先</span>
+                    </li>
                     <li>{this.props.user.err}</li>
                 </ul>
 

@@ -34,6 +34,20 @@ app.all('*', function(req, res, next) {
     else  next();
 });
 
+//首页路由开始
+//获取hot列表页数据
+let hotLists =require('./mock/hot');
+app.get('/hot',function (req,res) {
+  res.json(hotLists);
+});
+
+//获取轮播图数据
+let swipers=require('./mock/swiper');
+app.get('/slider',function (req,res) {
+  res.json(swipers)
+});
+//首页路由结束
+
 // 调用路由中间件
 app.use(routers);
 
@@ -80,3 +94,5 @@ app.post('/login',function (req,res) {
         }
     })
 });
+
+

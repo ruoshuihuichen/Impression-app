@@ -1,11 +1,17 @@
-import {get} from './utils';
-//所有的接口的方法都加s
-//最终 我们调用的是getSwipers的方法
-let url = 'http://localhost:3000';
-//获取轮播图
-export const getSwipers = () =>{
-    return get( url+'/swiper');
+import {ajax} from './util1';
+
+let url='http://localhost:3000';
+//获取轮播图数据
+export const getSwipers=()=>{
+  return ajax({
+    url:url+'/slider',
+    method:'get',
+  })
 };
-export const getHotLists =() =>{
-    return get(`${url}/hotList`);
+//获取hotList数据
+export const getHots=()=>{
+  return ajax({
+    url:url+'/hot',
+    method:'get'
+  })
 };

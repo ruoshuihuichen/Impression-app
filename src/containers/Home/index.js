@@ -1,99 +1,74 @@
 import React,{Component} from 'react';
 import ScrollList from "../../components/ScrollList/index";
-import ReactSwipe from 'react-swipe';
-import NewList from "../../components/NewList/index";
+import HotList from "../../components/HotList/index";
 import SearchInp from "../../components/SearchInp/index";
-export default class Home extends Component{
-  constructor(){
-    super();
-    this.state={
+import {connect} from 'react-redux';
+import * as action from '../../redux/actions/home'
+import './index.less'
+import Swiper from "../../components/Swiper/index";
+import LoadMore from "../../components/LoadMore/index";
+import PullRefresh from "../../components/PullRefresh/index";
+
+ class Home extends Component{
+  componentDidMount(){
+    if(this.props.home.swipers.length===0){
+      this.props.getSwiper();
+      this.props.getHot();
     }
-  }
-  toBlock=()=>{
-    console.log(1);
+    if(this.props.home.swipers.length>0){
+      //将记录好的滚动条状态取出来赋给 content元素
+      this.refs.scroll.scrollTop = JSON.parse(sessionStorage.getItem('homeLocation'));
+      this.forceUpdate();
+    }
 
-    let style={
-      position:"absolute",
-      top:0,
-      left:0,
-      bottom:0,
-      right:0,
-      zIndex:20,
-      backgroundColor:"#FFF"
-    };
-
-  };
-  getSearch=(ele)=>{
-    console.log(ele);
   }
+   componentWillUnmount(){ //组件将要销毁的时候 记住滚动条的位置
+     // util.set('homeLocation',this.refs.scroll.scrollTop);
+     sessionStorage.setItem('homeLocation',JSON.stringify(this.refs.scroll.scrollTop))
+   }
+   refresh=()=>{
+     this.props.getHot();
+   };
+   loadMore=()=>{
+     this.props.getHot();
+     this.props.home.hot.isLoading='true';
+   };
   render(){
-    // 列表页数据
-    let newList=[
-      {
-        id:1,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      },
-      {
-        id:2,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      },
-      {
-        id:3,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      },
-      {
-        id:4,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      },
-      {
-        id:5,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      },
-      {
-        id:6,
-        img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
-        text:"解锁青海两大名湖，照片百揽不如纵身一至"
-      }
-    ]
-    // let newList=[]
+    let {swipers} =this.props.home;
+    let {hotList,hasMore,isLoading} =this.props.home.hot;
     return(
         <div >
           {/*头部*/}
-          <SearchInp
-              getSearch={this.getSearch}
-              onKeyDown={this.toBlock}/>
+          <SearchInp />
           {/*滚动区域*/}
-          <ScrollList>
-            {/*轮播图*/}
-            <ReactSwipe
-                className="carousel"
-                swipeOptions={{
-                  startSlide: 2,
-                  speed: 400,
-                  auto: 3000,
-                  continuous: true,
-                  stopPropagation: true
-                }}>
-              <div className="sliderList">
-                <img src="http://img.chufaba.me/routes/2016/06/23/kr75295cryxvlilp.jpg!1600" alt=""/>
-              </div>
-              <div className="sliderList">
-                <img src="http://img.chufaba.me/routes/2016/06/16/393l5x2ihjrjdpj8.jpg!1600" alt=""/>
-              </div>
-              <div className="sliderList">
-                <img src="http://img.chufaba.me/routes/2014/09/22/0d2e0543b9a306e7.png!1600" alt=""/>
-              </div>
-            </ReactSwipe>
-            {/*最新*/}
-            <NewList newList={newList}/>
-          </ScrollList >
+
+          <div className="content" ref='scroll'>
+            <ScrollList
+                element={this.refs.scroll}
+                isLoading={isLoading}
+                hasMore={hasMore}
+                loadMore={this.loadMore}>
+              <PullRefresh refresh={this.refresh}>
+              {/*轮播图*/}
+              <Swiper swipers={swipers}/>
+              {/**/}
+              {/*最新*/}
+              <HotList hotList={hotList}/>
+
+              {/*加载更多*/}
+              <LoadMore
+                  isLoading={isLoading}
+                  hasMore={hasMore}
+                  loadMore={this.loadMore}/>
+              </PullRefresh>
+            </ScrollList >
+          </div>
+
         </div>
     )
   }
 }
-import './index.less'
+export default connect(
+    state=>({...state}),
+    action
+)(Home)

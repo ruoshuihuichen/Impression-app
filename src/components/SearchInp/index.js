@@ -1,8 +1,5 @@
 import React,{Component} from 'react';
 export default class SearchInp extends Component{
-  componentDidMount(){
-    this.props.getSearch(this.refs.search)
-  }
 
   render(){
     return(

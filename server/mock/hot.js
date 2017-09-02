@@ -1,0 +1,35 @@
+module.exports={
+  hasMore:true,
+  hotList:[
+    {
+      id:1,
+      img:"http://img.chufaba.me/0820ae905e51ca0689fc7dfaabb5b39a.jpg!1600",
+      text:"解锁青海两大名湖，照片百揽不如纵身一至"
+    },
+    {
+      id:2,
+      img:"http://img.chufaba.me/usercover_44345A10-9562-4F4D-AB06-79B096CAED97.jpg!1600",
+      text:"与时光对话"
+    },
+    {
+      id:3,
+      img:"http://img.chufaba.me/routes/2016/06/16/393l5x2ihjrjdpj8.jpg!1600",
+      text:"色彩莫奈.吉维尼一日游"
+    },
+    {
+      id:4,
+      img:"http://img.chufaba.me/routes/2014/11/28/73fe70adfe662945.png!1600",
+      text:"有座天堂叫做南纬8°"
+    },
+    {
+      id:5,
+      img:"http://cfbassets.b0.upaiyun.com/assets/app.v2/home-index-20b9291494ad0abb9ee94611b0f4e9f1.js",
+      text:"我的名字叫红"
+    },
+    {
+      id:6,
+      img:"http://img.chufaba.me/routes/2014/09/22/0d2e0543b9a306e7.png!1600",
+      text:"宝岛总动员"
+    }
+  ]
+}
